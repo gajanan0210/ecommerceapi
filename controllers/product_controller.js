@@ -8,7 +8,7 @@ module.exports.create = async function(req, res) {
         let product = await Product.create(req.body);
         return res.status(201).json({
             success: true,
-            message: "Product added successfully",
+            message: product.name + " added successfully",
             data:{
                 name : product.name,
                 quantity : product.quantity,
@@ -27,7 +27,7 @@ module.exports.getProducts = async function(req, res) {
         let product = await Product.find({});
         return res.status(200).json({
             success: "true",
-            message: "List of products",
+            message: "Available products",
             data: product
         })
     } catch (error) {
@@ -50,7 +50,7 @@ module.exports.update = async function(req, res) {
         console.log(product);
         return res.status(200).json({
             status: "true",
-            message: "Product Updated",
+            message: product.name +" Product Updated",
             data:{
                 product
             },
@@ -69,7 +69,7 @@ module.exports.delete = async function(req, res) {
         let product = await Product.findByIdAndDelete(req.params.id);
         return res.status(200).json({
             success: "true",
-            message: "Product deleted successfully"
+            message:product.name +  " deleted successfully"
         })
     } catch (error) {
         return res.status(500).json ({
